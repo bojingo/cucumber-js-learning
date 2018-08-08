@@ -3,11 +3,12 @@ const exec = require('child_process').exec
 
 let runCucumber = function (browser, environment, cucumberArgs) {
     process.env.BROWSER = browser
-    process.env.TEST_ENVIRONMENT = environment
+    process.env.RUNTIME_ENVIRONMENT = environment
 
     let options = {
         env: {
-            'BROWSER':  process.env.BROWSER
+            'BROWSER':  process.env.BROWSER,
+            'RUNTIME_ENVIRONMENT': process.env.RUNTIME_ENVIRONMENT
         }
     }
     exec('node ./node_modules/cucumber/bin/cucumber-js ' + cucumberArgs, options, function (err, stdout, stderr) {

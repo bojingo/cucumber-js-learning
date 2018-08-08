@@ -1,5 +1,6 @@
-var { BeforeAll, After, Before, AfterAll } = require('cucumber');
+const { BeforeAll, After, Before, AfterAll } = require('cucumber');
 const { Builder } = require('selenium-webdriver')
+const environments = require('../../config/environments')
 
 var buildChromeDriver = function () {
     return new Builder().forBrowser("chrome").build();
@@ -20,6 +21,11 @@ var buildDriver = function (browser) {
             console.error("Specify a browser!")
     }
 }
+
+BeforeAll(function () {
+    global.environment = environments[process.env.RUNTIME_ENVIRONMENT || "local"]
+    console.log('Using environment configuration: ' + JSON.stringify(global.environment))
+})
 
 Before(function () {
     global.driver = buildDriver(process.env.BROWSER || "CHROME")

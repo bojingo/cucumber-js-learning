@@ -8,7 +8,7 @@ class GmailPage extends BasePage {
         super(driver)
     }
 
-    static get URL () { return "http://www.gmail.com" }
+    static get URL () { return global.environment.baseUrl + "/mail" }
 
     static async visit (driver) {
         await driver.get(GmailPage.URL)

@@ -8,7 +8,7 @@ class HomePage extends BasePage {
         super(driver)
     }
 
-    static get URL () { return "http://www.google.com" }
+    static get URL () { return global.environment.baseUrl }
 
     static async visit (driver) {
         await driver.get(HomePage.URL)
